@@ -11,3 +11,13 @@
    * `sudo apt-get update`
    * `sudo apt-get install libcrypto++-dev libcrypto++-doc libcrypto++-utils`
 3. Compile program: `g++ source.cpp -o source -L. -lcryptopp`
+
+
+## Running Programs
+### Example Files
+#### Encryption
+1. After compiling program into example_encode: `./example_encode MSG1 MSG1.ee <8-char-key-string>`
+#### Decryption
+2. After compiling program into example_decode: `./example_decode MSG1.ee MSG1.dd <8-char-key-string>`
+
+We can verify that MSG1 and MSG1.dd are identical: `diff MSG1 MSG1.dd`
