@@ -1,0 +1,5 @@
+.vscode/
+
+# generated programs
+ctr_decode
+ctr_encode
