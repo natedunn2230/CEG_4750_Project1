@@ -4,11 +4,11 @@
 #include<string>
 using namespace std;
 
-#include"crypto++/cryptlib.h"
-#include"crypto++/hex.h"
-#include"crypto++/filters.h"
-#include"crypto++/des.h"
-#include"crypto++/modes.h"
+#include"cryptopp/cryptlib.h"
+#include"cryptopp/hex.h"
+#include"cryptopp/filters.h"
+#include"cryptopp/des.h"
+#include"cryptopp/modes.h"
 
 using namespace CryptoPP;
 
