@@ -73,7 +73,7 @@ int main(int argc, char * argv[])
 
     std::cout << "Incoming Ciphertext: " << cipherText << std::endl;
 
-    std::string plainText = decode(plainText, test_counter, test_key);
+    std::string plainText = decode(cipherText, test_counter, test_key);
 
     std::cout << "Resulting Plaintext: " << plainText << std::endl;
 
