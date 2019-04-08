@@ -21,3 +21,5 @@
 2. After compiling program into example_decode: `./example_decode MSG1.ee MSG1.dd <8-char-key-string>`
 
 We can verify that MSG1 and MSG1.dd are identical: `diff MSG1 MSG1.dd`
+
+Viewing file contents (hex and big endian): `od -x --endian=big <file>`
