@@ -42,6 +42,11 @@ unsigned char * applyPadding(std::string input, int * length)
 
     int totalSize = messageLength + paddingValue;
 
+    std::cout << "message length: " << messageLength << std::endl;
+    std::cout << "padding value: " << paddingValue << std::endl;
+    std::cout << "total size: " << totalSize << std::endl;
+
+
     *length = totalSize;
 
     unsigned char * data = new unsigned char[totalSize];
@@ -58,7 +63,8 @@ unsigned char * applyPadding(std::string input, int * length)
             data[i] = (unsigned char)paddingValue;
         }
     }
-        
+    
+    
     return data;
 }
 
@@ -107,6 +113,7 @@ int main(int argc, char * argv[])
     // for every 8 byte chunk, compute ctr block
     for(int i = 0; i < dataSize; i += BLOCK_SIZE)
     {
+        //std::cout << "DOING BLOCK " << i << "->" << i + BLOCK_SIZE << std::endl;
         int outputIndex = 0;
         unsigned char output[BLOCK_SIZE];
 
@@ -119,14 +126,24 @@ int main(int argc, char * argv[])
         // xor result with plaintext block to get ciphertext block
         for(int j = i; j < i + BLOCK_SIZE; j++)
         {
+            //std::cout << "\t\tdoing xor for byte " << j << std::endl;
+
             cipherData[j] = plainData[j] ^ output[outputIndex];
             outputIndex++;
         }
     }
 
-    std::cout << "Resulting CipherText: " << cipherData << std::endl;
+    std::string stringCipher;
+    for(int i = 0; i < dataSize; i++)
+    {
+        //std::cout << "data at index " << i << ": " << cipherData[i] << std::endl;
+        stringCipher += cipherData[i];
+        //std::cout << stringCipher << std::endl;
+        
+    }
+    std::cout << "Ciphertext stored in " << argv[2] << std::endl;
 
-    outputFile << cipherData;
+    outputFile << stringCipher;
 
     inputFile.close();
     outputFile.close();

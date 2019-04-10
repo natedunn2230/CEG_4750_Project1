@@ -29,7 +29,7 @@ void des_encryption_8(unsigned char *input, unsigned char *key, unsigned char *o
     unsigned char xorBlock[BLOCK_SIZE];
     memset(xorBlock, 0, BLOCK_SIZE);
     desEncryptor.SetKey(key, BLOCK_SIZE);
-    desEncryptor.ProcessAndXorBlock(input, xorBlock, output); //
+    desEncryptor.ProcessAndXorBlock(input, xorBlock, output);
 
 }
 
@@ -45,6 +45,15 @@ unsigned char * getData(std::string input)
     }
 
     return data;
+}
+
+// obtain value of padding and update size of data
+void removePadding(unsigned char * data, int * size)
+{
+    // obtain last byte to obtain padding value
+    unsigned char paddingValue = data[*size - 1];
+
+    *size = *size - paddingValue;
 }
 
 int main(int argc, char * argv[])
@@ -84,6 +93,7 @@ int main(int argc, char * argv[])
     unsigned char * plainData = new unsigned char[dataSize];
     
     int counterN = 0;
+
     // process each ctr block into plaintext, for every 8 byte chunk
     for(int i = 0; i < dataSize; i += BLOCK_SIZE)
     {
@@ -105,9 +115,18 @@ int main(int argc, char * argv[])
 
     }
 
-    std::cout << "Resulting Plaintext: " << plainData << std::endl;
+    // detect padding and update size
+    removePadding(plainData, &dataSize);
 
-    outputFile << plainData;
+    std::string plainText;
+    for(int i = 0; i < dataSize; i++)
+    {
+        plainText += plainData[i];
+    }
+
+    std::cout << "Resulting Plaintext: " << plainText << std::endl;
+
+    outputFile << plainText;
 
     inputFile.close();
     outputFile.close();
