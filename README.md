@@ -1,25 +1,22 @@
-# CEG_4750_Project1
+# CEG 4750 Project 1
+*CEG-4750-90 (Information Security)*
 
-##### Authors: Nathan Dunn and Derek Steinke
+*Dr. Meilin Liu*
 
+*Authors: Nathan Dunn and Derek Steinke*
 
-## Setup
-*Note: This project is intended for use on an Ubuntu System*
+*4-15-19*
 
-1. Install g++ compiler: `sudo apt install g++`
-2. Install cryptopp: 
-   * `sudo apt-get update`
-   * `sudo apt-get install libcrypto++-dev libcrypto++-doc libcrypto++-utils`
-3. Compile program: `g++ source.cpp -o source -L. -lcryptopp`
-
+## Compilation
+compile source file: `g++ <source_file.cpp> -o <name> -L. -l cryptopp`
 
 ## Running Programs
-### Example Files
-#### Encryption
-1. After compiling program into example_encode: `./example_encode MSG1 MSG1.ee <8-char-key-string>`
-#### Decryption
-2. After compiling program into example_decode: `./example_decode MSG1.ee MSG1.dd <8-char-key-string>`
+Encoding programs accept an **infile** and an **outfile**. The **infile** contents are encoded and written to the **outfile**
 
-We can verify that MSG1 and MSG1.dd are identical: `diff MSG1 MSG1.dd`
-
-Viewing file contents (hex and big endian): `od -x --endian=big <file>`
+Decoding programs accept an **infile** and an **outfile**. The **infile** contents are decoded and written to the **outfile**
+#### CTR MODE 
+`./ctr_encode <infile> <outfile>`
+`./ctr_decode <infile> <outfile>`
+#### CBC MODE
+`./cbc_encode <infile> <outfile>`
+`./cbc_decode <infile> <outfile>`
