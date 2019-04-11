@@ -42,11 +42,6 @@ unsigned char * applyPadding(std::string input, int * length)
 
     int totalSize = messageLength + paddingValue;
 
-    std::cout << "message length: " << messageLength << std::endl;
-    std::cout << "padding value: " << paddingValue << std::endl;
-    std::cout << "total size: " << totalSize << std::endl;
-
-
     *length = totalSize;
 
     unsigned char * data = new unsigned char[totalSize];
