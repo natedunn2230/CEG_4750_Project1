@@ -122,13 +122,13 @@ int main(int argc, char * argv[])
         
         for(int j = 0; j < BLOCK_SIZE; j++)
     	{
-			if( i == 0) //If first block, xor plaintext with the initialization vector
-			{
-				tempData[j] = plainData[j] ^ iVector[j];
-			}
+		if( i == 0) //If first block, xor plaintext with the initialization vector
+		{
+			tempData[j] = plainData[j] ^ iVector[j];
+		}
         	else //otherwise, xor plaintext with the last encrpyted block
         	{
-        		tempData[j] = plainData[j] ^ lastBlock[j];
+        		tempData[j] = plainData[j + i] ^ lastBlock[j];
         	}
         	//outputIndex++;
     	}
